@@ -5,16 +5,12 @@ public class Randomizer : MonoBehaviour
 {
     private int[] magazine;
     private int ammo;
-    public Randomizer()
-    {
-        magazine = new int[6];
-        ammo = magazine.Length - 1;
-    }
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        magazine = new int[6];
+        ammo = 0;
     }
 
     // Update is called once per frame
@@ -40,24 +36,25 @@ public class Randomizer : MonoBehaviour
         int heal = 1;
         int miss = 0;
         int bulletmod = Random.Range(0, 99);
-        for (int i = 0; i <= 5; i++)
+        for (int i = ammo; i <= 5; i++)
         {
-            if (bulletmod < 39)
+            if (bulletmod <= 39)
             {
                 magazine[i] = hit;
             }
-            else if (bulletmod > 40 && bulletmod < 69)
+            else if (bulletmod <= 69)
             {
                 magazine[i] = heal;
             }
-            else if (bulletmod > 70 && bulletmod < 94)
+            else if (bulletmod <= 94)
             {
                 magazine[i] = miss;
             }
-            else if (bulletmod > 95 && bulletmod < 99)
+            else if (bulletmod <= 99)
             {
                 magazine[i] = doublehit;
             }
         }
+        ammo = 6;
     }
 }

@@ -6,7 +6,10 @@ public class GameController : MonoBehaviour
     // tracks whether players at indices i - 1 are alive (true) or dead (false)
     public bool[] playersStatus;
 
+    // 4-size array that stores a player number at each index
     public int[] roundOrder;
+
+    // tracks position in the roundOrder (0-3), indicating whose turn is next
     public int nextOrder;
 
     public GameObject player1;
@@ -65,6 +68,14 @@ public class GameController : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void runGame()
+    {
+        // function runs once per turn
+        while (true) {
+            
+        }
     }
 
     // startPlayer is a num from 1-4
