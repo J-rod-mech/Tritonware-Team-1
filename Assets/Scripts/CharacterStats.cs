@@ -41,6 +41,6 @@ public class CharacterStats : MonoBehaviour
     // death function to trigger effects
     void Die()
     {
-        
+
     }
 }
