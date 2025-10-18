@@ -12,6 +12,9 @@ public class GameController : MonoBehaviour
     // tracks position in the roundOrder (0-3), indicating whose turn is next
     public int nextOrder;
 
+    // starting player for each round
+    public int startPlayer;
+
     public GameObject player1;
     public GameObject player2;
     public GameObject player3;
@@ -37,7 +40,6 @@ public class GameController : MonoBehaviour
         pStats2 = player2.GetComponent<CharacterStats>();
         pStats3 = player3.GetComponent<CharacterStats>();
         pStats4 = player4.GetComponent<CharacterStats>();
-
     }
 
     public CharacterStats getStats(int n)
@@ -72,9 +74,20 @@ public class GameController : MonoBehaviour
 
     public void runGame()
     {
+        startPlayer = Random.Range(0, 4);
+        startRound(startPlayer);
         // function runs once per turn
         while (true) {
-            
+            // run code for CPU turns
+            if (roundOrder[nextOrder] != 1)
+            {
+
+            }
+            // run code for your turn
+            else
+            {
+
+            }
         }
     }
 
@@ -96,6 +109,7 @@ public class GameController : MonoBehaviour
         }
 
         nextOrder = 0;
+        startPlayer = (startPlayer + 1) % 4;
     }
 
     // change ordering for when a player is shot
@@ -110,15 +124,5 @@ public class GameController : MonoBehaviour
                 roundOrder[i - 1] = nextPlayer;
             }
         }
-    }
-
-    // Modifies target player's hp based on bullet type fired
-    public void ShootAt(int hitPlayer, int bullet)
-    {
-        CharacterStats player = getStats(hitPlayer);
-        player.hp += bullet;
-        player.GetHit();
-        nextOrder++;
-        reorderRound(hitPlayer);
     }
 }

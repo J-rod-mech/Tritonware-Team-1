@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
     public GameController game;
+    public GunController gun;
     
     // number representing currently selected option:
     // 1 = shoot
@@ -22,6 +24,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         optionSelection = 1;
         playerSelection = 3;
         game = GetComponent<GameController>();
+        gun = GetComponent<GunController>();
     }
 
     // Update is called once per frame
@@ -58,7 +61,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 // shoot
                 if (optionSelection == 1)
                 {
-                    game.ShootAt(playerSelection, 0);
+                    gun.Shoot(playerSelection, 0);
                 }
                 // reload
                 {
