@@ -73,8 +73,9 @@ public class GameController : MonoBehaviour
     public void runGame()
     {
         // function runs once per turn
-        while (true) {
-            
+        while (true)
+        {
+
         }
     }
 
@@ -101,7 +102,7 @@ public class GameController : MonoBehaviour
     // change ordering for when a player is shot
     // precondition: player has not moved
     public void reorderRound(int nextPlayer)
-    {   
+    {
         for (int i = 3; i > nextOrder; i--)
         {
             if (roundOrder[i] == nextPlayer)
