@@ -597,6 +597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152bb882e61057543b3ee7f20ec7931b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  gameMod: {fileID: 0}
   game: {fileID: 0}
   gun: {fileID: 0}
   optionSelection: 0
@@ -613,6 +614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01e3f5633c368f741b4d9e22d9decf6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CPUController
+  gameMod: {fileID: 0}
   game: {fileID: 0}
   gun: {fileID: 0}
 --- !u!114 &1519787029
@@ -627,6 +629,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d620e33cc11b9b5469733bc70181fbcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunController
+  gameMod: {fileID: 0}
   game: {fileID: 0}
   ammo: 0
 --- !u!114 &1519787030
@@ -654,7 +657,6 @@ MonoBehaviour:
   pStats3: {fileID: 0}
   pStats4: {fileID: 0}
   cpu: {fileID: 0}
-  delay: 2
 --- !u!1 &1843858237
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,6 +881,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 152bb882e61057543b3ee7f20ec7931b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
+  gameMod: {fileID: 0}
   game: {fileID: 0}
   gun: {fileID: 0}
   optionSelection: 0

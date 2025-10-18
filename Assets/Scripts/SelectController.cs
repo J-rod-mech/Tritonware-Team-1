@@ -1,8 +1,9 @@
 using System;
 using UnityEngine;
 
-public class NewMonoBehaviourScript : MonoBehaviour
+public class SelectController : MonoBehaviour
 {
+    public GameObject gameMod;
     public GameController game;
     public GunController gun;
     
@@ -23,14 +24,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         optionSelection = 1;
         playerSelection = 3;
-        game = GetComponent<GameController>();
-        gun = GetComponent<GunController>();
+        gameMod = GameObject.Find("GameMod");
+        game = gameMod.GetComponent<GameController>();
+        gun = gameMod.GetComponent<GunController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (game.roundOrder[game.nextOrder] == 1)
+        if (game.nextOrder < 4 && game.roundOrder[game.nextOrder] == 1)
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
@@ -61,15 +63,34 @@ public class NewMonoBehaviourScript : MonoBehaviour
                 // shoot
                 if (optionSelection == 1)
                 {
-                    gun.Shoot(playerSelection, 0);
+                    if (gun.ammo > 0)
+                    {
+                        gun.Shoot(playerSelection, 1);
+                    }
+                    else
+                    {
+                        Debug.Log("Can\'t shoot - out of ammo");
+                    }
                 }
                 // reload
-                {
-
+                else {
+                    if (gun.ammo < 6)
+                    {
+                        gun.Reload(1); 
+                    }
+                    else
+                    {
+                        Debug.Log("Can\'t reload - ammo full");
+                    }
                 }
                 Debug.Log("option: " + optionSelection);
                 Debug.Log("player: " + playerSelection);
             }
         }
     }
+
+    //public bool optionSelect()
+    //{
+        
+    //}
 }

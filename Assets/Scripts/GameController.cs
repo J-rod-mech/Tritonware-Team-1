@@ -1,5 +1,7 @@
 using System.Linq.Expressions;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class GameController : MonoBehaviour
 {
@@ -25,6 +27,12 @@ public class GameController : MonoBehaviour
     public CharacterStats pStats3;
     public CharacterStats pStats4;
 
+    public CPUController cpu;
+
+    public GunController gun;
+
+    public bool playerTurnFinished = false;
+
     void Start()
     {
         playersStatus = new bool[4];
@@ -40,6 +48,9 @@ public class GameController : MonoBehaviour
         pStats2 = player2.GetComponent<CharacterStats>();
         pStats3 = player3.GetComponent<CharacterStats>();
         pStats4 = player4.GetComponent<CharacterStats>();
+        cpu = GetComponent<CPUController>();
+        gun = GetComponent<GunController>();
+        StartCoroutine(runGame());
     }
 
     public CharacterStats getStats(int n)
@@ -69,31 +80,47 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
-    public void runGame()
+    // Coroutine for CPU action
+    IEnumerator CPUAction()
     {
-        startPlayer = Random.Range(0, 4);
-        startRound(startPlayer);
-        // function runs once per turn
-        while (true) {
-            // run code for CPU turns
-            if (roundOrder[nextOrder] != 1)
-            {
+        yield return new WaitForSeconds(2f); // 2-second delay
+        cpu.Act(roundOrder[nextOrder]);
+    }
 
-            }
-            // run code for your turn
-            else
+    // initialize game
+    IEnumerator runGame()
+    {
+        startPlayer = Random.Range(0, 4) + 1;
+        startRound();
+        while (true)
+        {
+            while (roundOrder[nextOrder] != 1)
             {
-
+                yield return StartCoroutine(CPUAction());
             }
+            
+            Debug.Log("It's your turn");
+            Debug.Log("P1: " + getStats(1).hp + "HP|P2: " + getStats(2).hp + "HP|P3: " + getStats(3).hp + "HP|P4:" + getStats(4).hp + "HP");
+            Debug.Log(gun.ammo + " bullets left");
+
+            // Wait until the player finishes their turn
+            yield return new WaitUntil(() => nextOrder >= 4 || roundOrder[nextOrder] != 1);
+
+            while (nextOrder < 4 && roundOrder[nextOrder] != 0)
+            {
+                yield return StartCoroutine(CPUAction());
+            }
+            startRound();
         }
     }
 
     // startPlayer is a num from 1-4
-    public void startRound(int startPlayer)
+    public void startRound()
     {
+        Debug.Log("New Round!");
         // init round
         roundOrder = new int[4];
         nextOrder = 0;
@@ -109,7 +136,7 @@ public class GameController : MonoBehaviour
         }
 
         nextOrder = 0;
-        startPlayer = (startPlayer + 1) % 4;
+        startPlayer = startPlayer % 4 + 1;
     }
 
     // change ordering for when a player is shot
