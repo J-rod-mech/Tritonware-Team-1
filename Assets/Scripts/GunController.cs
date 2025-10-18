@@ -1,12 +1,12 @@
 using System.ComponentModel;
 using UnityEngine;
 
-public class Randomizer : MonoBehaviour
+public class GunController : MonoBehaviour
 {
     public GameController game;
     private int[] magazine;
     private int ammo;
-
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,8 +32,9 @@ public class Randomizer : MonoBehaviour
         {
             game.reorderRound(hitPlayer);
         }
+        ammo--;
     }
-
+    
     void Reload()
     {
         int hit = -1;
