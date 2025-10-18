@@ -4,7 +4,7 @@ public class CPUController : MonoBehaviour
 {
     public GameController game;
     public GunController gun;
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,7 +15,7 @@ public class CPUController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     // makes an action
@@ -24,10 +24,10 @@ public class CPUController : MonoBehaviour
         int choice = Random.Range(0, 2);
         if (choice == 1)
         {
-            
+
         }
     }
-    
+
     public void CPUShoot()
     {
         int[] targets = new int[3];
@@ -36,7 +36,7 @@ public class CPUController : MonoBehaviour
         {
             if (game.playersStatus[i])
             {
-                targets[numTargets] =
+                // targets[numTargets] =
             }
         }
     }

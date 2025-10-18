@@ -1,5 +1,7 @@
 using UnityEngine;
 using TMPro;
+using System;
+using System.IO;
 
 public class TextBoxes : MonoBehaviour
 {
@@ -24,6 +26,12 @@ public class TextBoxes : MonoBehaviour
     void onPlayerTurn()
     {
         displayText.text = game.roundOrder[game.nextOrder] + "'s turn";
+    }
+    void displayActionList()
+    {
+        displayText.text = "Available moves: " + Environment.NewLine + "W - shoot the gun" +
+        Environment.NewLine + "S - reload the gun" + Environment.NewLine + "A - change target left" +
+        Environment.NewLine + "D - change target right";
     }
     void onShoot(int playerHit, int playerShooter)
     {

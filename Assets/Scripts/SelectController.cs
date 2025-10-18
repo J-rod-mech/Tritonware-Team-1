@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
+    public GameObject gameMod;
     public GameController game;
     public GunController gun;
-    
+
     // number representing currently selected option:
     // 1 = shoot
     // 0 = reload
@@ -17,7 +18,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     // 3 = 3
     // 4 = 4
     public int playerSelection;
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
