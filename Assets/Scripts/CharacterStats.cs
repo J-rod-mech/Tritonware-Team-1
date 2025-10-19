@@ -10,7 +10,7 @@ public class CharacterStats : MonoBehaviour
     // n is the player num, from 1-4
     void Start()
     {
-        hp = 5;
+        hp = 3;
         if (this.gameObject.name == "Player1")
         {
             num = 1;

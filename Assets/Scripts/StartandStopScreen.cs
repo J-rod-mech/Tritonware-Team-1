@@ -18,9 +18,10 @@ public class StartandStopScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isGameOverScreen() == True)
+        /*if (isGameOverScreen() == True)
         {
             targetRenderer.material.mainTexture = gameOverScreen;
         }
+        */
     }
 }

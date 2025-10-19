@@ -28,11 +28,11 @@ public class CPUController : MonoBehaviour
         {
             CPUShoot(self);
         }
-        else if (gun.ammo <= 0 || choice == 0)
+        else if (gun.ammo <= 0 /*|| choice == 0*/)
         {
             gun.Reload(self);
         }
-        else if (choice == 1)
+        else /*if (choice == 1)*/
         {
             CPUShoot(self);
         }

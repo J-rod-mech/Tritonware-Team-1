@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel;
 using UnityEngine;
 
@@ -40,6 +41,12 @@ public class GunController : MonoBehaviour
         {
             game.reorderRound(hitPlayer);
         }
+        else
+        {
+            game.playersStatus[hitPlayer - 1] = false;
+            game.reorderRound(0);
+            Debug.Log("Player " + hitPlayer + " has been killed");
+        }
     }
     
     public void Reload(int playerTurn)
@@ -47,10 +54,12 @@ public class GunController : MonoBehaviour
         int hit = -1;
         int doublehit = -2;
         int heal = 1;
-        int miss = 0;
-        for (int i = ammo; i <= 5; i++)
+        int blank = 0;
+        Debug.Log("Player " + playerTurn + " reloaded " + (6 - ammo) + " bullets");
+        String reloadOrder = "chamber < ";
+        for (int i = 5; i >= ammo; i--)
         {
-            int bulletmod = Random.Range(0, 100);
+            int bulletmod = UnityEngine.Random.Range(0, 100);
             if (bulletmod <= 39)
             {
                 magazine[i] = hit;
@@ -61,14 +70,36 @@ public class GunController : MonoBehaviour
             }
             else if (bulletmod <= 94)
             {
-                magazine[i] = miss;
+                magazine[i] = blank;
             }
             else if (bulletmod <= 99)
             {
                 magazine[i] = doublehit;
             }
+            switch (magazine[i])
+            {
+                case -1:
+                    reloadOrder += "hit";
+                    break;
+                case -2:
+                    reloadOrder += "doublehit";
+                    break;
+                case 1:
+                    reloadOrder += "heal";
+                    break;
+                case 0:
+                    reloadOrder += "blank";
+                    break;
+            }
+            if (i > ammo)
+            {
+                reloadOrder += ", ";
+            }
         }
-        Debug.Log("Player " + playerTurn + " reloaded " + (6 - ammo) + " bullets");
+        if (playerTurn == 1)
+        {
+            Debug.Log(reloadOrder);
+        }
         ammo = 6;
         game.nextOrder++;
     }

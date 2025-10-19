@@ -139,10 +139,21 @@ public class GameController : MonoBehaviour
         startPlayer = startPlayer % 4 + 1;
     }
 
-    // change ordering for when a player is shot
+    // change ordering for when a player is shot or dies
     // precondition: player has not moved
     public void reorderRound(int nextPlayer)
     {   
+        for (int i = 0; i < 4; i++)
+        {
+            if (roundOrder[i] != 0 && playersStatus[roundOrder[i] - 1] == false)
+            {
+                for (int j = i; j < 3; j++)
+                {
+                    roundOrder[j] = roundOrder[j + 1];
+                }
+                roundOrder[3] = 0;
+            }
+        }
         for (int i = 3; i > nextOrder; i--)
         {
             if (roundOrder[i] == nextPlayer)
