@@ -2,14 +2,16 @@ using UnityEngine;
 
 public class CPUController : MonoBehaviour
 {
+    public GameObject gameMod;
     public GameController game;
     public GunController gun;
-
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        game = GetComponent<GameController>();
-        gun = GetComponent<GunController>();
+        gameMod = GameObject.Find("GameMod");
+        game = gameMod.GetComponent<GameController>();
+        gun = gameMod.GetComponent<GunController>();
     }
 
     // Update is called once per frame
@@ -19,25 +21,36 @@ public class CPUController : MonoBehaviour
     }
 
     // makes an action
-    public void Act()
+    public void Act(int self)
     {
         int choice = Random.Range(0, 2);
-        if (choice == 1)
+        if (gun.ammo == 6)
         {
-
+            CPUShoot(self);
+        }
+        else if (gun.ammo <= 0 /*|| choice == 0*/)
+        {
+            gun.Reload(self);
+        }
+        else /*if (choice == 1)*/
+        {
+            CPUShoot(self);
         }
     }
-
-    public void CPUShoot()
+    
+    public void CPUShoot(int self)
     {
-        int[] targets = new int[3];
+        int[] targets = new int[4];
         int numTargets = 0;
         for (int i = 0; i < 4; i++)
         {
             if (game.playersStatus[i])
             {
-                // targets[numTargets] =
+                targets[numTargets++] = i + 1;
             }
         }
+
+        int target = Random.Range(0, numTargets);
+        gun.Shoot(targets[target], self);
     }
 }
