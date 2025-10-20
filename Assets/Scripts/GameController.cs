@@ -30,6 +30,8 @@ public class GameController : MonoBehaviour
     public CPUController cpu;
 
     public GunController gun;
+    public GameObject text;
+    public TextBoxes textbox;
 
     public bool playerTurnFinished = false;
 
@@ -48,6 +50,8 @@ public class GameController : MonoBehaviour
         pStats2 = player2.GetComponent<CharacterStats>();
         pStats3 = player3.GetComponent<CharacterStats>();
         pStats4 = player4.GetComponent<CharacterStats>();
+        text = GameObject.Find("DialogueText");
+        textbox = text.GetComponent<TextBoxes>();
         cpu = GetComponent<CPUController>();
         gun = GetComponent<GunController>();
         StartCoroutine(runGame());
@@ -86,8 +90,10 @@ public class GameController : MonoBehaviour
     // Coroutine for CPU action
     IEnumerator CPUAction()
     {
-        yield return new WaitForSeconds(2f); // 2-second delay
+        textbox.onPlayerTurn();
+        yield return new WaitForSeconds(1f);
         cpu.Act(roundOrder[nextOrder]);
+        yield return new WaitForSeconds(2f);
     }
 
     // initialize game
@@ -101,8 +107,8 @@ public class GameController : MonoBehaviour
             {
                 yield return StartCoroutine(CPUAction());
             }
-            
-            Debug.Log("It's your turn");
+
+            textbox.onPlayerTurn();
             Debug.Log("P1: " + getStats(1).hp + "HP|P2: " + getStats(2).hp + "HP|P3: " + getStats(3).hp + "HP|P4:" + getStats(4).hp + "HP");
             Debug.Log(gun.ammo + " bullets left");
 

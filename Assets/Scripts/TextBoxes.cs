@@ -14,7 +14,6 @@ public class TextBoxes : MonoBehaviour
     public GameController game;
 
 
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -26,23 +25,36 @@ public class TextBoxes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        onPlayerTurn();
-        StartCoroutine(delayText());
+
     }
     IEnumerator delayText()
     {
         yield return new WaitForSeconds(2f);
         displayActionList();
     }
-    void onPlayerTurn()
+    public void onPlayerTurn()
     {
-        displayText.text = game.roundOrder[game.nextOrder] + "'s turn";
+        displayText.text = "Player " + game.roundOrder[game.nextOrder] + " \'s turn";
     }
-    void displayActionList()
+    public void displayActionList()
     {
         displayText.text = "Available moves: " + Environment.NewLine + "W - shoot the gun" +
         Environment.NewLine + "S - reload the gun" + Environment.NewLine + "A - change target left" +
         Environment.NewLine + "D - change target right";
     }
 
+    public void displayShotMSG(int hitPlayer, int playerTurn, int dmg)
+    {
+        displayText.text += Environment.NewLine + Environment.NewLine + "Player " + playerTurn + " shot Player " + hitPlayer + " for " + dmg + " damage";
+    }
+
+    public void addKillMSG(int hitPlayer)
+    {
+        displayText.text += Environment.NewLine + "Player " + hitPlayer + " has been killed";
+    }
+
+    public void displayReloadMSG(int playerTurn, int bullets)
+    {
+        displayText.text = "Player " + playerTurn + " reloaded " + bullets + " bullets";
+    }
 }
