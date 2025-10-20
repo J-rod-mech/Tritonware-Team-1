@@ -44,5 +44,8 @@ public class TextBoxes : MonoBehaviour
         Environment.NewLine + "S - reload the gun" + Environment.NewLine + "A - change target left" +
         Environment.NewLine + "D - change target right";
     }
+    void displayDamage()
+    {
 
+    }
 }
