@@ -51,8 +51,9 @@ public class GunController : MonoBehaviour
             game.reorderRound(-1);
             textbox.addKillMSG(hitPlayer);
         }
+        textbox.interrupt = true;
     }
-    
+
     // Refill the gun's chamber to full then spin the barrel
     public void Reload(int playerTurn)
     {
@@ -118,6 +119,8 @@ public class GunController : MonoBehaviour
             Debug.Log(reloadOrder);
         }
         ammo = 6;
+        textbox.displayReloadMSG(playerTurn);
         game.nextOrder++;
+        textbox.interrupt = true;
     }
 }
