@@ -10,6 +10,8 @@ public class GunController : MonoBehaviour
     public TextBoxes textbox;
     private int[] magazine;
     public int ammo;
+    public GameObject sound;
+    public AudioPlayer audioPlayer;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,6 +22,8 @@ public class GunController : MonoBehaviour
         game = gameMod.GetComponent<GameController>();
         text = GameObject.Find("DialogueText");
         textbox = text.GetComponent<TextBoxes>();
+        sound = GameObject.Find("Sound");
+        audioPlayer = sound.GetComponent<AudioPlayer>();
     }
 
     // Update is called once per frame
@@ -33,6 +37,23 @@ public class GunController : MonoBehaviour
     {
         CharacterStats player = game.getStats(hitPlayer);
         player.hp += magazine[ammo - 1];
+        if (magazine[ammo - 1] == -1)
+        {
+            audioPlayer.SingleshotAudio();
+        }
+        else if (magazine[ammo - 1] == -2)
+        {
+            audioPlayer.DoubleshotAudio();
+        }
+        else if (magazine[ammo - 1] == 1)
+        {
+            audioPlayer.HealAudio();
+        }
+        else if (magazine[ammo - 1] == 0)
+        {
+            audioPlayer.MisfireAudio();
+        }
+
         player.GetHit();
         textbox.displayShotMSG(hitPlayer, playerTurn, -magazine[ammo - 1]);
         magazine[ammo - 1] = 0;
@@ -63,6 +84,7 @@ public class GunController : MonoBehaviour
         int blank = 0;
         String reloadOrder = "< ";
         // refill bullets
+        audioPlayer.ReloadAudio();
         for (int i = 5; i >= ammo; i--)
         {
             int bulletmod = UnityEngine.Random.Range(0, 100);
@@ -70,11 +92,11 @@ public class GunController : MonoBehaviour
             {
                 magazine[i] = hit;
             }
-            else if (bulletmod <= 69)
+            else if (bulletmod <= 64)
             {
                 magazine[i] = heal;
             }
-            else if (bulletmod <= 94)
+            else if (bulletmod <= 89)
             {
                 magazine[i] = blank;
             }
