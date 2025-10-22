@@ -6,6 +6,8 @@ public class SelectController : MonoBehaviour
     public GameObject gameMod;
     public GameController game;
     public GunController gun;
+    public GameObject text;
+    public TextBoxes textbox;
 
     // number representing currently selected option:
     // 1 = shoot
@@ -27,6 +29,8 @@ public class SelectController : MonoBehaviour
         gameMod = GameObject.Find("GameMod");
         game = gameMod.GetComponent<GameController>();
         gun = gameMod.GetComponent<GunController>();
+        text = GameObject.Find("DialogueText");
+        textbox = text.GetComponent<TextBoxes>();
     }
 
     // Update is called once per frame
@@ -37,26 +41,22 @@ public class SelectController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.W))
             {
                 optionSelection = Mathf.Min(optionSelection + 1, 1);
-                Debug.Log("option: " + optionSelection);
-                Debug.Log("player: " + playerSelection);
+                textbox.displayActionList();
             }
             else if (Input.GetKeyDown(KeyCode.A))
             {
                 playerSelection = (playerSelection + 2) % 4 + 1;
-                Debug.Log("option: " + optionSelection);
-                Debug.Log("player: " + playerSelection);
+                textbox.displayActionList();
             }
             else if (Input.GetKeyDown(KeyCode.S))
             {
                 optionSelection = Mathf.Max(optionSelection - 1, 0);
-                Debug.Log("option: " + optionSelection);
-                Debug.Log("player: " + playerSelection);
+                textbox.displayActionList();
             }
             else if (Input.GetKeyDown(KeyCode.D))
             {
                 playerSelection = playerSelection % 4 + 1;
-                Debug.Log("option: " + optionSelection);
-                Debug.Log("player: " + playerSelection);
+                textbox.displayActionList();
             }
             else if (Input.GetKeyDown(KeyCode.Space))
             {

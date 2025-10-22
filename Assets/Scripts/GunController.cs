@@ -6,6 +6,8 @@ public class GunController : MonoBehaviour
 {
     public GameObject gameMod;
     public GameController game;
+    public GameObject text;
+    public TextBoxes textbox;
     private int[] magazine;
     public int ammo;
     
@@ -16,6 +18,8 @@ public class GunController : MonoBehaviour
         ammo = 0;
         gameMod = GameObject.Find("GameMod");
         game = gameMod.GetComponent<GameController>();
+        text = GameObject.Find("DialogueText");
+        textbox = text.GetComponent<TextBoxes>();
     }
 
     // Update is called once per frame
@@ -30,7 +34,7 @@ public class GunController : MonoBehaviour
         CharacterStats player = game.getStats(hitPlayer);
         player.hp += magazine[ammo - 1];
         player.GetHit();
-        Debug.Log("Player " + playerTurn + " shot Player " + hitPlayer + " for " + (-magazine[ammo - 1]) + " damage");
+        textbox.displayShotMSG(hitPlayer, playerTurn, -magazine[ammo - 1]);
         magazine[ammo - 1] = 0;
         ammo--;
         if (hitPlayer != playerTurn)
@@ -44,19 +48,21 @@ public class GunController : MonoBehaviour
         else
         {
             game.playersStatus[hitPlayer - 1] = false;
-            game.reorderRound(0);
-            Debug.Log("Player " + hitPlayer + " has been killed");
+            game.reorderRound(-1);
+            textbox.addKillMSG(hitPlayer);
         }
+        textbox.interrupt = true;
     }
-    
+
+    // Refill the gun's chamber to full then spin the barrel
     public void Reload(int playerTurn)
     {
         int hit = -1;
         int doublehit = -2;
         int heal = 1;
         int blank = 0;
-        Debug.Log("Player " + playerTurn + " reloaded " + (6 - ammo) + " bullets");
-        String reloadOrder = "chamber < ";
+        String reloadOrder = "< ";
+        // refill bullets
         for (int i = 5; i >= ammo; i--)
         {
             int bulletmod = UnityEngine.Random.Range(0, 100);
@@ -96,11 +102,25 @@ public class GunController : MonoBehaviour
                 reloadOrder += ", ";
             }
         }
+
+        // spin barrel to randomize position
+        int startPos = UnityEngine.Random.Range(0, 6);
+        int[] oldMag = new int[6];
+        for (int i = 0; i < 6; i++)
+        {
+            oldMag[i] = magazine[i];
+        }
+        for (int i = 0; i < 6; i++)
+        {
+            magazine[i] = oldMag[(i + startPos) % 6];
+        }
         if (playerTurn == 1)
         {
             Debug.Log(reloadOrder);
         }
         ammo = 6;
+        textbox.displayReloadMSG(playerTurn);
         game.nextOrder++;
+        textbox.interrupt = true;
     }
 }

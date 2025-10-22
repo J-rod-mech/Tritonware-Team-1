@@ -5,6 +5,8 @@ public class CPUController : MonoBehaviour
     public GameObject gameMod;
     public GameController game;
     public GunController gun;
+    public GameObject text;
+    public TextBoxes textbox;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -12,6 +14,8 @@ public class CPUController : MonoBehaviour
         gameMod = GameObject.Find("GameMod");
         game = gameMod.GetComponent<GameController>();
         gun = gameMod.GetComponent<GunController>();
+        text = GameObject.Find("DialogueText");
+        textbox = text.GetComponent<TextBoxes>();
     }
 
     // Update is called once per frame
