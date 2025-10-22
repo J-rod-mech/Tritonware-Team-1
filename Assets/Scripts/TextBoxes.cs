@@ -57,8 +57,6 @@ public class TextBoxes : MonoBehaviour
         Environment.NewLine + "[A] target left        [S] option reload      [D] target right" +
         Environment.NewLine + "[SPACE] confirm";
     }
-    void displayDamage()
-    {
 
     public void displayShotMSG(int hitPlayer, int playerTurn, int dmg)
     {
