@@ -51,7 +51,7 @@ public class TextBoxes : MonoBehaviour
         }
         else
         {
-            optionText = "Choosing to reload";
+            optionText = "Choosing to reload          ";
         }
         displayText.text = Environment.NewLine + "                         " + optionText + "   [SPACE] confirm" + Environment.NewLine + "[W] option shoot" +
         Environment.NewLine + "[A] target left             [S] option reload         [D] target right";
