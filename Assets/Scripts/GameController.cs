@@ -2,6 +2,7 @@ using System.Linq.Expressions;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
+using System.Threading;
 
 public class GameController : MonoBehaviour
 {
@@ -81,21 +82,6 @@ public class GameController : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    // Coroutine for CPU action
-    IEnumerator CPUAction()
-    {
-        textbox.onPlayerTurn();
-        yield return new WaitForSeconds(1f);
-        cpu.Act(roundOrder[nextOrder]);
-        yield return new WaitForSeconds(2f);
-    }
-
     // initialize game
     IEnumerator runGame()
     {
@@ -109,11 +95,26 @@ public class GameController : MonoBehaviour
             }
 
             textbox.onPlayerTurn();
+            yield return new WaitForSeconds(1f);
+            textbox.displayActionList();
             Debug.Log("P1: " + getStats(1).hp + "HP|P2: " + getStats(2).hp + "HP|P3: " + getStats(3).hp + "HP|P4:" + getStats(4).hp + "HP");
             Debug.Log(gun.ammo + " bullets left");
-
+            
             // Wait until the player finishes their turn
+            while (nextOrder < 4 && roundOrder[nextOrder] == 1)
+            {
+                // delay during your turn
+                if (textbox.interrupt)
+                {
+                    yield return new WaitForSeconds(1.5f);
+                    textbox.interrupt = false;
+                    textbox.displayActionList();
+                }
+                yield return new WaitUntil(() => !textbox.interrupt);
+            }
+
             yield return new WaitUntil(() => nextOrder >= 4 || roundOrder[nextOrder] != 1);
+            yield return new WaitForSeconds(1.5f);
 
             while (nextOrder < 4 && roundOrder[nextOrder] != 0)
             {
@@ -121,6 +122,15 @@ public class GameController : MonoBehaviour
             }
             startRound();
         }
+    }
+
+    // Coroutine for CPU action
+    IEnumerator CPUAction()
+    {
+        textbox.onPlayerTurn();
+        yield return new WaitForSeconds(1f);
+        cpu.Act(roundOrder[nextOrder]);
+        yield return new WaitForSeconds(2f);
     }
 
     // startPlayer is a num from 1-4

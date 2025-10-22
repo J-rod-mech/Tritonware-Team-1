@@ -13,6 +13,10 @@ public class TextBoxes : MonoBehaviour
 
     public GameController game;
 
+    public SelectController select;
+
+    public bool interrupt;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -20,6 +24,8 @@ public class TextBoxes : MonoBehaviour
         gameMod = GameObject.Find("GameMod");
         game = gameMod.GetComponent<GameController>();
         displayText = GetComponent<TMP_Text>();
+        select = gameMod.GetComponent<SelectController>();
+        interrupt = false;
     }
 
     // Update is called once per frame
@@ -34,18 +40,27 @@ public class TextBoxes : MonoBehaviour
     }
     public void onPlayerTurn()
     {
-        displayText.text = "Player " + game.roundOrder[game.nextOrder] + " \'s turn";
+        displayText.text = "Player " + game.roundOrder[game.nextOrder] + "\'s turn";
     }
     public void displayActionList()
     {
-        displayText.text = "Available moves: " + Environment.NewLine + "W - shoot the gun" +
-        Environment.NewLine + "S - reload the gun" + Environment.NewLine + "A - change target left" +
-        Environment.NewLine + "D - change target right";
+        String optionText;
+        if (select.optionSelection == 1)
+        {
+            optionText = "Choosing to shoot Player " + select.playerSelection;
+        }
+        else
+        {
+            optionText = "Choosing to reload";
+        }
+        displayText.text = Environment.NewLine + optionText + Environment.NewLine + Environment.NewLine + "[W] option shoot" +
+        Environment.NewLine + "[A] target left        [S] option reload      [D] target right" +
+        Environment.NewLine + "[SPACE] confirm";
     }
 
     public void displayShotMSG(int hitPlayer, int playerTurn, int dmg)
     {
-        displayText.text += Environment.NewLine + Environment.NewLine + "Player " + playerTurn + " shot Player " + hitPlayer + " for " + dmg + " damage";
+        displayText.text = Environment.NewLine + "Player " + playerTurn + " shot Player " + hitPlayer + " for " + dmg + " damage";
     }
 
     public void addKillMSG(int hitPlayer)
@@ -53,8 +68,8 @@ public class TextBoxes : MonoBehaviour
         displayText.text += Environment.NewLine + "Player " + hitPlayer + " has been killed";
     }
 
-    public void displayReloadMSG(int playerTurn, int bullets)
+    public void displayReloadMSG(int playerTurn)
     {
-        displayText.text = "Player " + playerTurn + " reloaded " + bullets + " bullets";
+        displayText.text = Environment.NewLine + "Player " + playerTurn + " reloaded";
     }
 }
