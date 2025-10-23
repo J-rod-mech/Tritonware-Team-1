@@ -15,6 +15,15 @@ public class TextBoxes : MonoBehaviour
 
     public SelectController select;
 
+    public GameObject p1HP;
+    public GameObject p2HP;
+    public GameObject p3HP;
+    public GameObject p4HP;
+    public TMP_Text player1Text;
+    public TMP_Text player2Text;
+    public TMP_Text player3Text;
+    public TMP_Text player4Text;
+
     public bool interrupt;
 
 
@@ -25,6 +34,14 @@ public class TextBoxes : MonoBehaviour
         game = gameMod.GetComponent<GameController>();
         displayText = GetComponent<TMP_Text>();
         select = gameMod.GetComponent<SelectController>();
+        p1HP = GameObject.Find("HPTXT1");
+        p2HP = GameObject.Find("HPTXT2");
+        p3HP = GameObject.Find("HPTXT3");
+        p4HP = GameObject.Find("HPTXT4");
+        player1Text = p1HP.GetComponent<TMP_Text>();
+        player2Text = p2HP.GetComponent<TMP_Text>();
+        player3Text = p3HP.GetComponent<TMP_Text>();
+        player4Text = p4HP.GetComponent<TMP_Text>();
         interrupt = false;
     }
 
@@ -38,6 +55,15 @@ public class TextBoxes : MonoBehaviour
         yield return new WaitForSeconds(2f);
         displayActionList();
     }
+
+    public void DisplayHealth()
+    {
+        player1Text.text = "X " + game.getStats(1).hp;
+        player2Text.text = "X " + game.getStats(2).hp;
+        player3Text.text = "X " + game.getStats(3).hp;
+        player4Text.text = "X " + game.getStats(4).hp;
+    }
+
     public void onPlayerTurn()
     {
         displayText.text = "Player " + game.roundOrder[game.nextOrder] + "\'s turn";

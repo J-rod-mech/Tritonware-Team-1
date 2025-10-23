@@ -122,6 +122,7 @@ public class GunController : MonoBehaviour
         {
             bullet6.enabled = false;
         }
+        textbox.DisplayHealth();
     }
 
     // Refill the gun's chamber to full then spin the barrel

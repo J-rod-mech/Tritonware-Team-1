@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 90208815}
   - component: {fileID: 90208814}
   m_Layer: 5
-  m_Name: HPTXT2
+  m_Name: HPTXT1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173,6 +173,14 @@ MonoBehaviour:
   gameMod: {fileID: 0}
   game: {fileID: 125726694}
   select: {fileID: 0}
+  p1HP: {fileID: 0}
+  p2HP: {fileID: 0}
+  p3HP: {fileID: 0}
+  p4HP: {fileID: 0}
+  player1Text: {fileID: 0}
+  player2Text: {fileID: 0}
+  player3Text: {fileID: 0}
+  player4Text: {fileID: 0}
   interrupt: 0
 --- !u!114 &90208815
 MonoBehaviour:
@@ -194,9 +202,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'hello
-
-'
+  m_text: X 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 279316996e68b95439597e42688d8a2e, type: 2}
   m_sharedMaterial: {fileID: 8948383054781750067, guid: 279316996e68b95439597e42688d8a2e, type: 2}
@@ -626,6 +632,14 @@ MonoBehaviour:
   gameMod: {fileID: 0}
   game: {fileID: 125726694}
   select: {fileID: 0}
+  p1HP: {fileID: 0}
+  p2HP: {fileID: 0}
+  p3HP: {fileID: 0}
+  p4HP: {fileID: 0}
+  player1Text: {fileID: 0}
+  player2Text: {fileID: 0}
+  player3Text: {fileID: 0}
+  player4Text: {fileID: 0}
   interrupt: 0
 --- !u!114 &234233008
 MonoBehaviour:
@@ -647,9 +661,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'hello
-
-'
+  m_text: X 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 279316996e68b95439597e42688d8a2e, type: 2}
   m_sharedMaterial: {fileID: 8948383054781750067, guid: 279316996e68b95439597e42688d8a2e, type: 2}
@@ -782,6 +794,14 @@ MonoBehaviour:
   gameMod: {fileID: 0}
   game: {fileID: 125726694}
   select: {fileID: 0}
+  p1HP: {fileID: 0}
+  p2HP: {fileID: 0}
+  p3HP: {fileID: 0}
+  p4HP: {fileID: 0}
+  player1Text: {fileID: 0}
+  player2Text: {fileID: 0}
+  player3Text: {fileID: 0}
+  player4Text: {fileID: 0}
   interrupt: 0
 --- !u!114 &256587576
 MonoBehaviour:
@@ -803,9 +823,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'hello
-
-'
+  m_text: X 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 279316996e68b95439597e42688d8a2e, type: 2}
   m_sharedMaterial: {fileID: 8948383054781750067, guid: 279316996e68b95439597e42688d8a2e, type: 2}
@@ -1773,6 +1791,14 @@ MonoBehaviour:
   gameMod: {fileID: 0}
   game: {fileID: 125726694}
   select: {fileID: 0}
+  p1HP: {fileID: 0}
+  p2HP: {fileID: 0}
+  p3HP: {fileID: 0}
+  p4HP: {fileID: 0}
+  player1Text: {fileID: 0}
+  player2Text: {fileID: 0}
+  player3Text: {fileID: 0}
+  player4Text: {fileID: 0}
   interrupt: 0
 --- !u!114 &576723593
 MonoBehaviour:
@@ -2601,6 +2627,14 @@ MonoBehaviour:
   gameMod: {fileID: 0}
   game: {fileID: 125726694}
   select: {fileID: 0}
+  p1HP: {fileID: 0}
+  p2HP: {fileID: 0}
+  p3HP: {fileID: 0}
+  p4HP: {fileID: 0}
+  player1Text: {fileID: 0}
+  player2Text: {fileID: 0}
+  player3Text: {fileID: 0}
+  player4Text: {fileID: 0}
   interrupt: 0
 --- !u!114 &827948056
 MonoBehaviour:
@@ -2622,9 +2656,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'hello
-
-'
+  m_text: X 3
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 279316996e68b95439597e42688d8a2e, type: 2}
   m_sharedMaterial: {fileID: 8948383054781750067, guid: 279316996e68b95439597e42688d8a2e, type: 2}
