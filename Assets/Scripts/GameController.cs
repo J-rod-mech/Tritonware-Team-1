@@ -35,7 +35,8 @@ public class GameController : MonoBehaviour
     public GameObject text;
     public TextBoxes textbox;
     public SelectController select;
-
+    public GameObject sound;
+    public MusicPlayer musicPlayer;
     public bool playerTurnFinished = false;
 
     void Start()
@@ -58,6 +59,8 @@ public class GameController : MonoBehaviour
         cpu = GetComponent<CPUController>();
         gun = GetComponent<GunController>();
         select = GetComponent<SelectController>();
+        sound = GameObject.Find("Sound");
+        musicPlayer = sound.GetComponent<MusicPlayer>();
         StartCoroutine(runGame());
     }
 
@@ -88,6 +91,7 @@ public class GameController : MonoBehaviour
     // initialize game
     IEnumerator runGame()
     {
+        musicPlayer.PlayAudio();
         startPlayer = UnityEngine.Random.Range(0, 4) + 1;
         startRound();
         while (true)
