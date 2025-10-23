@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SelectController : MonoBehaviour
 {
+    public CameraController cameracontroller;
     public GameObject gameMod;
     public GameController game;
     public GunController gun;
@@ -58,6 +59,7 @@ public class SelectController : MonoBehaviour
                     playerSelection = (playerSelection + 2) % 4 + 1;
                 }
                 textbox.displayActionList();
+                cameracontroller.FocusOnPlayer(playerSelection);
             }
             else if (optionSelection == 1 && Input.GetKeyDown(KeyCode.S))
             {
@@ -75,6 +77,7 @@ public class SelectController : MonoBehaviour
                     playerSelection = playerSelection % 4 + 1;
                 }
                 textbox.displayActionList();
+                cameracontroller.FocusOnPlayer(playerSelection);
             }
             else if (Input.GetKeyDown(KeyCode.Space))
             {
@@ -91,10 +94,11 @@ public class SelectController : MonoBehaviour
                     }
                 }
                 // reload
-                else {
+                else
+                {
                     if (gun.ammo < 6)
                     {
-                        gun.Reload(1); 
+                        gun.Reload(1);
                     }
                     else
                     {
@@ -105,10 +109,11 @@ public class SelectController : MonoBehaviour
                 Debug.Log("player: " + playerSelection);
             }
         }
+
     }
 
     //public bool optionSelect()
     //{
-        
+
     //}
 }
