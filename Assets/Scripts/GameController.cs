@@ -28,6 +28,10 @@ public class GameController : MonoBehaviour
     public CharacterStats pStats2;
     public CharacterStats pStats3;
     public CharacterStats pStats4;
+    public SpriteRenderer player1Sprite;
+    public SpriteRenderer player2Sprite;
+    public SpriteRenderer player3Sprite;
+    public SpriteRenderer player4Sprite;
 
     public CPUController cpu;
 
@@ -56,6 +60,10 @@ public class GameController : MonoBehaviour
         pStats2 = player2.GetComponent<CharacterStats>();
         pStats3 = player3.GetComponent<CharacterStats>();
         pStats4 = player4.GetComponent<CharacterStats>();
+        player1Sprite = player1.GetComponent<SpriteRenderer>();
+        player1Sprite = player2.GetComponent<SpriteRenderer>();
+        player1Sprite = player3.GetComponent<SpriteRenderer>();
+        player1Sprite = player4.GetComponent<SpriteRenderer>();
         text = GameObject.Find("DialogueText");
         textbox = text.GetComponent<TextBoxes>();
         cpu = GetComponent<CPUController>();
