@@ -12,6 +12,19 @@ public class GunController : MonoBehaviour
     public int ammo;
     public GameObject sound;
     public AudioPlayer audioPlayer;
+
+    public GameObject b1;
+    public GameObject b2;
+    public GameObject b3;
+    public GameObject b4;
+    public GameObject b5;
+    public GameObject b6;
+    public SpriteRenderer bullet1;
+    public SpriteRenderer bullet2;
+    public SpriteRenderer bullet3;
+    public SpriteRenderer bullet4;
+    public SpriteRenderer bullet5;
+    public SpriteRenderer bullet6;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,6 +37,18 @@ public class GunController : MonoBehaviour
         textbox = text.GetComponent<TextBoxes>();
         sound = GameObject.Find("Sound");
         audioPlayer = sound.GetComponent<AudioPlayer>();
+        b1 = GameObject.Find("Bullet1");
+        b2 = GameObject.Find("Bullet2");
+        b3 = GameObject.Find("Bullet3");
+        b4 = GameObject.Find("Bullet4");
+        b5 = GameObject.Find("Bullet5");
+        b6 = GameObject.Find("Bullet6");
+        bullet1 = b1.GetComponent<SpriteRenderer>();
+        bullet2 = b2.GetComponent<SpriteRenderer>();
+        bullet3 = b3.GetComponent<SpriteRenderer>();
+        bullet4 = b4.GetComponent<SpriteRenderer>();
+        bullet5 = b5.GetComponent<SpriteRenderer>();
+        bullet6 = b6.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -73,6 +98,30 @@ public class GunController : MonoBehaviour
             textbox.addKillMSG(hitPlayer);
         }
         textbox.interrupt = true;
+        if (ammo == 0)
+        {
+            bullet1.enabled = false;
+        }
+        else if (ammo == 1)
+        {
+            bullet2.enabled = false;
+        }
+        else if (ammo == 2)
+        {
+            bullet3.enabled = false;
+        }
+        else if (ammo == 3)
+        {
+            bullet4.enabled = false;
+        }
+        else if (ammo == 4)
+        {
+            bullet5.enabled = false;
+        }
+        else if (ammo == 5)
+        {
+            bullet6.enabled = false;
+        }
     }
 
     // Refill the gun's chamber to full then spin the barrel
@@ -124,6 +173,12 @@ public class GunController : MonoBehaviour
                 reloadOrder += ", ";
             }
         }
+        bullet1.enabled = true;
+        bullet2.enabled = true;
+        bullet3.enabled = true;
+        bullet4.enabled = true;
+        bullet5.enabled = true;
+        bullet6.enabled = true;
 
         // spin barrel to randomize position
         int startPos = UnityEngine.Random.Range(0, 6);
