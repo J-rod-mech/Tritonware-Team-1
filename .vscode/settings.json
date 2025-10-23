@@ -66,5 +66,10 @@
     "explorer.fileNesting.patterns": {
         "*.sln": "*.csproj"
     },
+<<<<<<< Updated upstream
     "dotnet.defaultSolution": "Tritonware-Team-1.sln"
+=======
+    "dotnet.defaultSolution": "Tritonware-Team-1.sln",
+    "dotnet.preferCSharpExtension": true
+>>>>>>> Stashed changes
 }
