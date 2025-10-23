@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 using System.Threading;
+using System;
 
 public class GameController : MonoBehaviour
 {
@@ -33,7 +34,9 @@ public class GameController : MonoBehaviour
     public GunController gun;
     public GameObject text;
     public TextBoxes textbox;
-
+    public SelectController select;
+    public GameObject sound;
+    public MusicPlayer musicPlayer;
     public bool playerTurnFinished = false;
 
     void Start()
@@ -55,6 +58,9 @@ public class GameController : MonoBehaviour
         textbox = text.GetComponent<TextBoxes>();
         cpu = GetComponent<CPUController>();
         gun = GetComponent<GunController>();
+        select = GetComponent<SelectController>();
+        sound = GameObject.Find("Sound");
+        musicPlayer = sound.GetComponent<MusicPlayer>();
         StartCoroutine(runGame());
     }
 
@@ -85,7 +91,8 @@ public class GameController : MonoBehaviour
     // initialize game
     IEnumerator runGame()
     {
-        startPlayer = Random.Range(0, 4) + 1;
+        musicPlayer.PlayAudio();
+        startPlayer = UnityEngine.Random.Range(0, 4) + 1;
         startRound();
         while (true)
         {
@@ -94,6 +101,18 @@ public class GameController : MonoBehaviour
                 yield return StartCoroutine(CPUAction());
             }
 
+            if (playersStatus[2])
+            {
+                select.playerSelection = 3;
+            }
+            else if (playersStatus[1])
+            {
+                select.playerSelection = 2;
+            }
+            else if (playersStatus[3])
+            {
+                select.playerSelection = 4;
+            }
             textbox.onPlayerTurn();
             yield return new WaitForSeconds(1f);
             textbox.displayActionList();
@@ -108,7 +127,10 @@ public class GameController : MonoBehaviour
                 {
                     yield return new WaitForSeconds(1.5f);
                     textbox.interrupt = false;
-                    textbox.displayActionList();
+                    if (roundOrder[nextOrder] == 1)
+                    {
+                        textbox.displayActionList();
+                    }
                 }
                 yield return new WaitUntil(() => !textbox.interrupt);
             }

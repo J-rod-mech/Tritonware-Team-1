@@ -51,15 +51,15 @@ public class TextBoxes : MonoBehaviour
         }
         else
         {
-            optionText = "Choosing to reload";
+            optionText = "     Choosing to reload     ";
         }
-        displayText.text = Environment.NewLine + "                         " + optionText + "    [SPACE] confirm" + Environment.NewLine + "[W] option shoot" +
-        Environment.NewLine + "[A] target left        [S] option reload     [D] target right";
+        displayText.text = Environment.NewLine + "                         " + optionText + "   [SPACE] confirm" + Environment.NewLine + "[W] option shoot" +
+        Environment.NewLine + "[A] target left             [S] option reload         [D] target right";
     }
 
     public void displayShotMSG(int hitPlayer, int playerTurn, int dmg)
     {
-        displayText.text = Environment.NewLine + "Player " + playerTurn + " shot Player " + hitPlayer + " for " + dmg + " damage";
+        displayText.text = Environment.NewLine + "Player " + playerTurn + " shoots Player " + hitPlayer + " for " + dmg + " damage";
     }
 
     public void addKillMSG(int hitPlayer)
@@ -69,6 +69,6 @@ public class TextBoxes : MonoBehaviour
 
     public void displayReloadMSG(int playerTurn)
     {
-        displayText.text = Environment.NewLine + "Player " + playerTurn + " reloaded";
+        displayText.text = Environment.NewLine + "Player " + playerTurn + " reloads and spins the barrel";
     }
 }

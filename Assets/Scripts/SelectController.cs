@@ -9,6 +9,8 @@ public class SelectController : MonoBehaviour
     public GunController gun;
     public GameObject text;
     public TextBoxes textbox;
+    public GameObject sound;
+    public AudioPlayer audioPlayer;
 
     // number representing currently selected option:
     // 1 = shoot
@@ -32,7 +34,8 @@ public class SelectController : MonoBehaviour
         gun = gameMod.GetComponent<GunController>();
         text = GameObject.Find("DialogueText");
         textbox = text.GetComponent<TextBoxes>();
-        cameracontroller = gameMod.GetComponent<CameraController>();
+        sound = GameObject.Find("Sound");
+        audioPlayer = sound.GetComponent<AudioPlayer>();
     }
 
     // Update is called once per frame
@@ -40,25 +43,39 @@ public class SelectController : MonoBehaviour
     {
         if (game.nextOrder < 4 && game.roundOrder[game.nextOrder] == 1)
         {
-            if (Input.GetKeyDown(KeyCode.W))
+            if (optionSelection == 0 && Input.GetKeyDown(KeyCode.W))
             {
+                audioPlayer.SelectAudio();
                 optionSelection = Mathf.Min(optionSelection + 1, 1);
                 textbox.displayActionList();
             }
-            else if (Input.GetKeyDown(KeyCode.A))
+            else if (optionSelection == 1 && Input.GetKeyDown(KeyCode.A))
             {
+                audioPlayer.SelectAudio();
                 playerSelection = (playerSelection + 2) % 4 + 1;
+                // moves on to next alive player if current target is dead
+                while (!game.playersStatus[playerSelection - 1])
+                {
+                    playerSelection = (playerSelection + 2) % 4 + 1;
+                }
                 textbox.displayActionList();
                 cameracontroller.FocusOnPlayer(playerSelection);
             }
-            else if (Input.GetKeyDown(KeyCode.S))
+            else if (optionSelection == 1 && Input.GetKeyDown(KeyCode.S))
             {
+                audioPlayer.SelectAudio();
                 optionSelection = Mathf.Max(optionSelection - 1, 0);
                 textbox.displayActionList();
             }
-            else if (Input.GetKeyDown(KeyCode.D))
+            else if (optionSelection == 1 && Input.GetKeyDown(KeyCode.D))
             {
+                audioPlayer.SelectAudio();
                 playerSelection = playerSelection % 4 + 1;
+                // moves on to next alive player if current target is dead
+                while (!game.playersStatus[playerSelection - 1])
+                {
+                    playerSelection = playerSelection % 4 + 1;
+                }
                 textbox.displayActionList();
                 cameracontroller.FocusOnPlayer(playerSelection);
             }
