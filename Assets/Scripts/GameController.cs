@@ -131,7 +131,7 @@ public class GameController : MonoBehaviour
             textbox.displayActionList();
             Debug.Log("P1: " + getStats(1).hp + "HP|P2: " + getStats(2).hp + "HP|P3: " + getStats(3).hp + "HP|P4:" + getStats(4).hp + "HP");
             Debug.Log(gun.ammo + " bullets left");
-            
+
             // Wait until the player finishes their turn
             while (nextOrder < 4 && roundOrder[nextOrder] == 1)
             {
@@ -194,7 +194,7 @@ public class GameController : MonoBehaviour
     // change ordering for when a player is shot or dies
     // precondition: player has not moved
     public void reorderRound(int nextPlayer)
-    {   
+    {
         for (int i = 0; i < 4; i++)
         {
             if (roundOrder[i] != 0 && playersStatus[roundOrder[i] - 1] == false)
