@@ -14,6 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/OverheadScene.unity
     guid: 5b967aae81c1c08478729a035f26adb5
+  - enabled: 1
+    path: Assets/Scenes/FPVScene.unity
+    guid: 19d0a4a5ee24a5d42af3ebd05668c42c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

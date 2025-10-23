@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour
 {
-    public string sceneToLoad = "OverheadScene";
+    public string sceneToLoad = "FPVScene";
 
     void Update()
     {
