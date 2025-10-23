@@ -38,6 +38,8 @@ public class GameController : MonoBehaviour
     public GameObject sound;
     public MusicPlayer musicPlayer;
     public bool playerTurnFinished = false;
+    public GameObject hg;
+    public SpriteRenderer handgun;
 
     void Start()
     {
@@ -61,6 +63,8 @@ public class GameController : MonoBehaviour
         select = GetComponent<SelectController>();
         sound = GameObject.Find("Sound");
         musicPlayer = sound.GetComponent<MusicPlayer>();
+        hg = GameObject.Find("ShootingFPV");
+        handgun = hg.GetComponent<SpriteRenderer>();
         StartCoroutine(runGame());
     }
 
@@ -114,6 +118,7 @@ public class GameController : MonoBehaviour
                 select.playerSelection = 4;
             }
             textbox.onPlayerTurn();
+            handgun.enabled = true;
             yield return new WaitForSeconds(1f);
             textbox.displayActionList();
             Debug.Log("P1: " + getStats(1).hp + "HP|P2: " + getStats(2).hp + "HP|P3: " + getStats(3).hp + "HP|P4:" + getStats(4).hp + "HP");
@@ -137,6 +142,7 @@ public class GameController : MonoBehaviour
 
             yield return new WaitUntil(() => nextOrder >= 4 || roundOrder[nextOrder] != 1);
             yield return new WaitForSeconds(1.5f);
+            handgun.enabled = false;
 
             while (nextOrder < 4 && roundOrder[nextOrder] != 0)
             {
