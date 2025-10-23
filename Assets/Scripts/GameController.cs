@@ -61,9 +61,9 @@ public class GameController : MonoBehaviour
         pStats3 = player3.GetComponent<CharacterStats>();
         pStats4 = player4.GetComponent<CharacterStats>();
         player1Sprite = player1.GetComponent<SpriteRenderer>();
-        player1Sprite = player2.GetComponent<SpriteRenderer>();
-        player1Sprite = player3.GetComponent<SpriteRenderer>();
-        player1Sprite = player4.GetComponent<SpriteRenderer>();
+        player2Sprite = player2.GetComponent<SpriteRenderer>();
+        player3Sprite = player3.GetComponent<SpriteRenderer>();
+        player4Sprite = player4.GetComponent<SpriteRenderer>();
         text = GameObject.Find("DialogueText");
         textbox = text.GetComponent<TextBoxes>();
         cpu = GetComponent<CPUController>();

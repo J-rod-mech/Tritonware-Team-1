@@ -59,7 +59,7 @@ public class SelectController : MonoBehaviour
                     playerSelection = (playerSelection + 2) % 4 + 1;
                 }
                 textbox.displayActionList();
-                cameracontroller.FocusOnPlayer(playerSelection);
+                //cameracontroller.FocusOnPlayer(playerSelection);
             }
             else if (optionSelection == 1 && Input.GetKeyDown(KeyCode.S))
             {
@@ -77,7 +77,7 @@ public class SelectController : MonoBehaviour
                     playerSelection = playerSelection % 4 + 1;
                 }
                 textbox.displayActionList();
-                cameracontroller.FocusOnPlayer(playerSelection);
+                //cameracontroller.FocusOnPlayer(playerSelection);
             }
             else if (Input.GetKeyDown(KeyCode.Space))
             {

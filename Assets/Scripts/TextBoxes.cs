@@ -58,10 +58,10 @@ public class TextBoxes : MonoBehaviour
 
     public void DisplayHealth()
     {
-        player1Text.text = "X " + game.getStats(1).hp;
-        player2Text.text = "X " + game.getStats(2).hp;
-        player3Text.text = "X " + game.getStats(3).hp;
-        player4Text.text = "X " + game.getStats(4).hp;
+        player1Text.text = game.getStats(1).hp > 0 ? "X " + game.getStats(1).hp: "";
+        player2Text.text = game.getStats(2).hp > 0 ? "X " + game.getStats(2).hp: "";
+        player3Text.text = game.getStats(3).hp > 0 ? "X " + game.getStats(3).hp: "";
+        player4Text.text = game.getStats(4).hp > 0 ? "X " + game.getStats(4).hp: "";
     }
 
     public void onPlayerTurn()

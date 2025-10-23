@@ -8,6 +8,8 @@ public class CharacterStats : MonoBehaviour
     public int num;
     public GameObject gameMod;
     public GameController game;
+    public Canvas c;
+    
 
     // n is the player num, from 1-4
     void Start()
@@ -47,19 +49,35 @@ public class CharacterStats : MonoBehaviour
     {
         if (num == 1)
         {
-            game.player1Sprite.enabled = false;
+            SpriteRenderer[] sprites = game.player1Sprite.GetComponentsInChildren<SpriteRenderer>();
+            foreach (SpriteRenderer sprite in sprites)
+            {
+                sprite.enabled = false;
+            }
         }
         else if (num == 2)
         {
-            game.player2Sprite.enabled = false;
+            SpriteRenderer[] sprites = game.player2Sprite.GetComponentsInChildren<SpriteRenderer>();
+            foreach (SpriteRenderer sprite in sprites)
+            {
+                sprite.enabled = false;
+            }
         }
         else if (num == 3)
         {   
-            game.player3Sprite.enabled = false;
+            SpriteRenderer[] sprites = game.player3Sprite.GetComponentsInChildren<SpriteRenderer>();
+            foreach (SpriteRenderer sprite in sprites)
+            {
+                sprite.enabled = false;
+            }
         }
         else if (num == 4)
         {
-            game.player4Sprite.enabled = false;
+            SpriteRenderer[] sprites = game.player4Sprite.GetComponentsInChildren<SpriteRenderer>();
+            foreach (SpriteRenderer sprite in sprites)
+            {
+                sprite.enabled = false;
+            }
         }
     }
 }
